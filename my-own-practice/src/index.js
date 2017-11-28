@@ -10,31 +10,40 @@ function formatUser(user) {
 	return user.lastname + ', ' + user.firstname;
 }
 
-function greeting(user) {
-	if(user) {
-		return 'Hello ' + formatUser(user) + ' !';
+// function greeting(user) {
+// 	if(user) {
+// 		return 'Hello ' + formatUser(user) + ' !';
+// 	}
+// 	else {
+// 		return 'Hello stranger !';
+// 	}
+// }
+
+function Greeting(props) {
+	if(props.user) {
+		return (
+			<div >
+		        <h1>Hello {formatUser(props.user)} !</h1> 
+		        <h2 > It is { new Date().toLocaleTimeString() }. </h2> 
+	        </div>
+        );
 	}
 	else {
-		return 'Hello stranger !';
+		return (
+			<div >
+		        <h1>Hello stranger !</h1> 
+		        <h2 > It is { new Date().toLocaleTimeString() }. </h2> 
+	        </div>
+        );
 	}
 }
 
-// ReactDom.render(
-// 	<h1>{greeting()}</h1>,
-// 	document.getElementById('root')
-// );
-
 
 function tick() {
-    const element = ( 
-    	<div >
-	        <h1>{greeting(user)}</h1> 
-	        <h2 > It is { new Date().toLocaleTimeString() }. </h2> 
-        </div>
-    );
+
 
     ReactDom.render(
-        element,
+        <Greeting user={user} />,
         document.getElementById('root')
     );
 }
