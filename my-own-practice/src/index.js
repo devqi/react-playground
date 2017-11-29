@@ -22,7 +22,7 @@ class Greeting extends React.Component {
 		}
 		else {
 			return (
-				<div >
+				<div>
 			        <h1>Hello stranger !</h1> 
 			        <h2 > It is { new Date().toLocaleTimeString() }. </h2> 
 		        </div>
@@ -31,19 +31,18 @@ class Greeting extends React.Component {
 	}
 }
 
-function App() {
-  return (
-    <div>
-      <Greeting user={user} />
-      <Greeting name="Cahal" />
-      <Greeting name="Edite" />
-    </div>
-  );
+function Clock(props) {
+	return (
+		<div>
+	        <h1>Hello {formatUser(props.user)} !</h1> 
+	        <h2 > It is { props.date.toLocaleTimeString() }. </h2> 
+        </div>
+    );
 }
 
 function tick() {
     ReactDom.render(
-        <App />,
+        <Clock user={user} date={new Date()} />,
         document.getElementById('root')
     );
 }
