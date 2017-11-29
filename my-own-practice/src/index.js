@@ -11,10 +11,10 @@ function formatUser(user) {
 }
 
 class Greeting extends React.Component {
-	render() {
+	render(){
 		if(this.props.user) {
 			return (
-				<div >
+				<div>
 			        <h1>Hello {formatUser(this.props.user)} !</h1> 
 			        <h2 > It is { new Date().toLocaleTimeString() }. </h2> 
 		        </div>
@@ -31,9 +31,19 @@ class Greeting extends React.Component {
 	}
 }
 
+function App() {
+  return (
+    <div>
+      <Greeting user={user} />
+      <Greeting name="Cahal" />
+      <Greeting name="Edite" />
+    </div>
+  );
+}
+
 function tick() {
     ReactDom.render(
-        <Greeting user={user} />,
+        <App />,
         document.getElementById('root')
     );
 }
