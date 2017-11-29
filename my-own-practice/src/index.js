@@ -16,7 +16,7 @@ class Greeting extends React.Component {
 			return (
 				<div>
 			        <h1>Hello {formatUser(this.props.user)} !</h1> 
-			        <h2 > It is { new Date().toLocaleTimeString() }. </h2> 
+			        <h2 > It is { this.props.date.toLocaleTimeString() }. </h2> 
 		        </div>
 	        );
 		}
@@ -42,7 +42,7 @@ function Clock(props) {
 
 function tick() {
     ReactDom.render(
-        <Clock user={user} date={new Date()} />,
+        <Greeting user={user} date={new Date()} />,
         document.getElementById('root')
     );
 }
