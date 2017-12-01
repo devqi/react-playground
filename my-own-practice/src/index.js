@@ -11,12 +11,34 @@ function formatUser(user) {
 }
 
 class Greeting extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {date: new Date()};
+	}
+
+	componentDidMount() {
+		this.timerID = setInterval(
+			() => this.tick(),
+			1000
+		);
+	}
+
+	componentWillUnmount() {
+		clearInterval(this.timerID);
+	}
+
+	tick() {
+		this.setState({
+			date: new Date()
+		});
+	}
+
 	render(){
-		if(this.props.user) {
+		if(this.state.user) {
 			return (
 				<div>
-			        <h1>Hello {formatUser(this.props.user)} !</h1> 
-			        <h2 > It is { this.props.date.toLocaleTimeString() }. </h2> 
+			        <h1>Hello {formatUser(this.state.user)} !</h1> 
+			        <h2 > It is { this.state.date.toLocaleTimeString() }. </h2> 
 		        </div>
 	        );
 		}
@@ -40,11 +62,7 @@ function Clock(props) {
     );
 }
 
-function tick() {
-    ReactDom.render(
-        <Greeting user={user} date={new Date()} />,
-        document.getElementById('root')
-    );
-}
-
-setInterval(tick, 1000);
+ReactDom.render(
+	<Greeting />,
+	document.getElementById('root')
+);
