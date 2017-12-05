@@ -1,37 +1,59 @@
-'use strict';
+"use strict";
 
-var template = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        'successfully tested JSX'
-    ),
-    React.createElement(
-        'p',
-        null,
-        'Some info ... '
-    ),
-    React.createElement(
-        'ol',
+var count = 0;
+
+var addOne = function addOne() {
+    count++;
+    renderCounter();
+};
+
+var renderCounter = function renderCounter() {
+    var template = React.createElement(
+        "div",
         null,
         React.createElement(
-            'li',
+            "h1",
             null,
-            'item one'
+            "successfully tested JSX"
         ),
         React.createElement(
-            'li',
+            "p",
             null,
-            'item two'
+            "Some info ..."
         ),
         React.createElement(
-            'li',
+            "ol",
             null,
-            'item three'
+            React.createElement(
+                "li",
+                null,
+                "item one"
+            ),
+            React.createElement(
+                "li",
+                null,
+                "item two"
+            ),
+            React.createElement(
+                "li",
+                null,
+                "item three"
+            )
+        ),
+        React.createElement(
+            "h1",
+            null,
+            "Count: ",
+            count
+        ),
+        React.createElement(
+            "button",
+            { id: "my-button", className: "button", onClick: addOne },
+            "+1"
         )
-    )
-);
-var appRoot = document.getElementById('app');
-ReactDOM.render(template, appRoot);
+    );
+
+    ReactDOM.render(template, document.getElementById('app'));
+};
+
+renderCounter();
