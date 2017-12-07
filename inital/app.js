@@ -25,3 +25,16 @@ const renderCounter = () => {
 };
 
 renderCounter();
+
+
+const obj = {
+    name: 'qizhang',
+    getName() {
+        return this.name;
+    }
+};
+
+
+const fetchName = obj.getName.bind(obj);
+console.log(fetchName());
+
