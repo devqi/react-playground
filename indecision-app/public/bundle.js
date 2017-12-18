@@ -73,14 +73,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 console.log('app.js is running');
-console.log(Object(__WEBPACK_IMPORTED_MODULE_0__utils_js__["a" /* square */])(3)); 
+console.log(Object(__WEBPACK_IMPORTED_MODULE_0__utils_js__["a" /* default */])(16)); 
 
 /***/ }),
 /* 1 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return square; });
 console.log('utils.js is running');
 
 const pi = 3.14;
@@ -93,7 +92,15 @@ const square = (x) => {
     return pi * pi;
 };
 
+// export default square ;
 
+/* harmony default export */ __webpack_exports__["a"] = ((x) => {
+    // console.log("square: " + (pi * pi));
+    if(x) {
+        return x * x;
+    }
+    return pi * pi;
+});
 
 /***/ })
 /******/ ]);

@@ -1,4 +1,4 @@
-import { square } from './utils.js';
+import anything from './utils.js';
 
 console.log('app.js is running');
-console.log(square(3)); 
+console.log(anything(16)); 

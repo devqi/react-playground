@@ -10,4 +10,12 @@ const square = (x) => {
     return pi * pi;
 };
 
-export { square };
+// export default square ;
+
+export default (x) => {
+    // console.log("square: " + (pi * pi));
+    if(x) {
+        return x * x;
+    }
+    return pi * pi;
+};
