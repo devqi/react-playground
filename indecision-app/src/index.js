@@ -15,4 +15,4 @@ User.defaultProps = {
     Age: 31
 };
 
-ReactDOM.render(<User />, document.getElementById('root'));
+// ReactDOM.render(<User />, document.getElementById('root'));
