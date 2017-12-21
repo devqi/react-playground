@@ -1,4 +1,8 @@
-import anything from './utils.js';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import OptionModal from './components/OptionModal';
+import './styles/styles.scss'
 
-console.log('app.js is running');
-console.log(anything(16)); 
+console.log(OptionModal);
+
+ReactDOM.render(<OptionModal />, document.getElementById('root'));
