@@ -7,7 +7,7 @@ const path = require('path');
 
 // the way to expose something
 module.exports = {
-    entry: './src/app.js',
+    entry: './src/components/IndecisionApp.js',
     output: {
         path: path.join(__dirname, 'public'),
         filename: 'bundle.js'
