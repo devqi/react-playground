@@ -7,7 +7,7 @@ export default class Option extends React.Component {
         return (
             <li>
                 {this.props.option}
-                <button onClick={this.props.handleRemoveAnOption(this.props.option) } >remove</button>
+                <button onClick={e => this.props.handleRemoveAnOption(this.props.option) } >remove</button>
             </li>
         );
     }

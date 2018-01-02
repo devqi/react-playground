@@ -21,8 +21,12 @@ class IndecisionApp extends React.Component {
         this.handleRemoveAllOptions = this
             .handleRemoveAllOptions
             .bind(this);
-        this.handleRemoveAnOption = this.handleRemoveAnOption.bind(this);
-        this.handleAddAnOption = this.handleAddAnOption.bind(this);
+        this.handleRemoveAnOption = this
+            .handleRemoveAnOption
+            .bind(this);
+        this.handleAddAnOption = this
+            .handleAddAnOption
+            .bind(this);
     }
 
     handleChooseAnOption() {}
@@ -31,10 +35,16 @@ class IndecisionApp extends React.Component {
         this.setState({options: []});
     }
 
-    handleRemoveAnOption() {}
+    handleRemoveAnOption(optionToRemove) {
+        this.setState(prevState => ({
+            options : prevState
+                .options
+                .filter(option => optionToRemove !== option)
+        }));
+    }
 
     handleAddAnOption(option) {
-        
+
         if (!option) {
             return 'Enter valid value to add item';
         } else if (this.state.options.indexOf(option) > -1) {
@@ -42,7 +52,9 @@ class IndecisionApp extends React.Component {
         }
 
         this.setState(prevState => ({
-            options: prevState.options.concat(option)
+            options: prevState
+                .options
+                .concat(option)
         }));
     }
 
@@ -64,4 +76,6 @@ class IndecisionApp extends React.Component {
 }
 
 ReactDOM.render(
-    <IndecisionApp/>, document.getElementById('root'));
+    <IndecisionApp />, 
+    document.getElementById('root')
+);
