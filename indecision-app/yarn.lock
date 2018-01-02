@@ -5339,6 +5339,10 @@ react-modal@^3.1.10:
     prop-types "^15.5.10"
     warning "^3.0.0"
 
+react-native-md5@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-md5/-/react-native-md5-1.0.0.tgz#2320be24d674938ae5ef4f492698edbbfa0e0205"
+
 react-scripts@1.0.17:
   version "1.0.17"
   resolved "https://registry.yarnpkg.com/react-scripts/-/react-scripts-1.0.17.tgz#c30029123b561a060227af4d7797d50a222d3fbf"

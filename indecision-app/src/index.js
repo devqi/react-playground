@@ -1,18 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import IndecisionApp from './components/IndecisionApp';
+import './styles/styles.scss'; 
 
-const User = (props) => {
-    return (
-        <div>
-            <p>Name: {props.Name} </p>
-            <p>Age: {props.Age}</p>
-        </div>
-    );
-};
-
-User.defaultProps = {
-    Name: "SomeUser",
-    Age: 31
-};
-
-// ReactDOM.render(<User />, document.getElementById('root'));
+ReactDOM.render(
+    <IndecisionApp />, 
+    document.getElementById('root')
+);
