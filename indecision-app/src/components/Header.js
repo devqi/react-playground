@@ -13,8 +13,10 @@ import React from 'react';
 
 const Header = () => (
     <header>
-        <h1 className='title'>Indecision App</h1>
-        <h2 className='subtitle'>Put your life in control</h2>
+        <div className='container'>
+            <h1 className='title'>Indecision App</h1>
+            <h2 className='subtitle'>Put your life in control</h2>
+        </div>
     </header>
 );
 

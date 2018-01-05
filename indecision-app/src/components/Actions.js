@@ -15,14 +15,10 @@ import React from 'react';
 // }
 
 const Actions = (props) => {
-    
-    const btnsWhenHasOptions = <div className='operation_buttons'>
-        <button className='choose_an_option' onClick={props.handleChooseAnOption}>What should I do?</button>
-        <button className='remove_all_options' onClick={props.handleRemoveAllOptions}>Remove all</button>
-    </div>;
-
     return (
-        props.options.length > 0 ? btnsWhenHasOptions : ''
+        <div className='operation_buttons'>
+            <button className='choose_an_option big-button' onClick={props.handleChooseAnOption} disabled={!(props.options.length > 0 )}>What should I do?</button>
+        </div>
     );
 }
 

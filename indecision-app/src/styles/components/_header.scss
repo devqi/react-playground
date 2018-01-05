@@ -1,4 +1,18 @@
 header {
-    background-color: blueviolet;
+    background-color: $off-black;
     color: #ffffff;
+    margin-bottom: 4.8rem;
+    padding: $m-size 0;
+}
+
+header .title {
+    font-size: 2*$m-size;
+    margin: 0;
+}
+
+header .subtitle {
+    color: $off-white;
+    font-size: $m-size;
+    font-weight: 500;
+    margin: 0;
 }

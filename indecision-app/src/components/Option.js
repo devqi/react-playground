@@ -13,9 +13,9 @@ import React from 'react';
 // }
 
 const Option = (props) => (
-    <li>
-        {props.option}
-        <button onClick={e => props.handleRemoveAnOption(props.option) } >remove</button>
+    <li className='option'>
+        <p className='option__text'>{props.optionIndex}.  {props.option}</p>
+        <button className='button--link' onClick={e => props.handleRemoveAnOption(props.option) } >remove</button>
     </li>
 );
 
