@@ -71,6 +71,8 @@ export default class IndecisionApp extends React.Component {
     }
 
     handleClearSelectedOption() {
+        // window.setTimeout(this.setState({selectedOption: undefined}), 300);
+
         this.setState({selectedOption: undefined});
     }
 
