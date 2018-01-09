@@ -11,7 +11,14 @@ export default class IndecisionApp extends React.Component {
         super(props);
 
         this.state = {
-            options: ['first', 'erueroueijflkcxkjxiufoiewuerueroueijflkcxkjxiufoiewuerueroueijflkcxkjxiufoiewuerueroueijflkcxkjxiufoiewuerueroueijflkcxkjxiufoiewuerueroueijflkcxkjxiufoiewuerueroueijflkcxkjxiufoiewuerueroueijflkcxkjxiufoiewuerueroueijflkcxkjxiufoiewuerueroueijflkcxkjxiufoiewuerueroueijflkcxkjxiufoiewuerueroueijflkcxkjxiufoiewuerueroueijflkcxkjxiufoiewu'],
+            options: [
+                'first', 
+                'erueroueijflkcxkjxiufoiewuerueroueijflkcxkjxiufoiewuerueroueijflkcxkjxiufoiewuer' +
+                        'ueroueijflkcxkjxiufoiewuerueroueijflkcxkjxiufoiewuerueroueijflkcxkjxiufoiewuerue' +
+                        'roueijflkcxkjxiufoiewuerueroueijflkcxkjxiufoiewuerueroueijflkcxkjxiufoiewueruero' +
+                        'ueijflkcxkjxiufoiewuerueroueijflkcxkjxiufoiewuerueroueijflkcxkjxiufoiewuerueroue' +
+                        'ijflkcxkjxiufoiewu'
+            ],
             selectedOption: undefined
         };
 
