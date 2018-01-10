@@ -5,6 +5,6 @@ import 'normalize.css/normalize.css'
 import './styles/styles.scss'; 
 
 ReactDOM.render(
-    <IndecisionApp />, 
+    <p>new app</p>, 
     document.getElementById('root')
 );
