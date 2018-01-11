@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import AppRouter from './Routers/AppRouter';
 import 'normalize.css/normalize.css'
 import './styles/styles.scss'; 
 
 ReactDOM.render(
-    <p>new app</p>, 
+    <AppRouter />, 
     document.getElementById('root')
 );
