@@ -5,30 +5,34 @@ console.log('redux-101');
 const store = createStore((state = { count: 10 }, action) => {
     switch (action.type) {
         case 'INCREMENT':
+            const incrementBy = (typeof action.incrementBy === 'number' ? action.incrementBy : 1);
             return {
-                count: state.count + 1
+                count: state.count + incrementBy
             };
         case 'DECREMENT':
+            const decrementBy = (typeof action.decrementBy === 'number' ? action.decrementBy : 1);
             return {
-                count: state.count - 1
+                count: state.count - decrementBy
             };
         case 'RESET':
             return {
-                count: 0
+                count: 10
             };
         default:
             return state;
     }
 });
 
-console.log(store.getState());
+/**
+ * this function is called, every time the state changes
+ */
+store.subscribe(() => {
+    console.log(store.getState());
+});
 
-store.dispatch({type: 'INCREMENT'});
-console.log(store.getState());
+store.dispatch({type: 'INCREMENT', incrementBy: 5});
 
-store.dispatch({type: 'DECREMENT'});
-console.log(store.getState());
+store.dispatch({type: 'DECREMENT', decrementBy: 10});
 
 store.dispatch({type: 'RESET'});
-console.log(store.getState());
 
