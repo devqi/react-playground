@@ -1,10 +1,43 @@
 import { createStore, combineReducers } from 'redux'; 
-import { uuid } from 'uuid';
+import uuid from 'uuid';
 
 /**
  * ADD_EXPENSE
  */
-const addExpense = () => {};
+const addExpense = (
+    {
+        description = '', 
+        note = '', 
+        amount = 0, 
+        createdAt = 0
+    } = {}
+) => ({
+    type: 'ADD_EXPENSE',
+    expense: {
+        id: uuid(),
+        description,
+        note,
+        amount,
+        createdAt
+    }
+});
+
+/**
+ * REMOVE_EXPENSE
+ */
+const removeExpense = ({id} = {} ) => ({
+    type: 'REMOVE_EXPENSE',
+    id
+});
+
+/**
+ * EDIT_EXPENSE
+ */
+const editExpense = (id, {update} = {} ) => ({
+    type: 'EDIT_EXPENSE',
+    id,
+    update
+});
 
 const expensesReducerDefaultState = [];
 
@@ -22,7 +55,103 @@ const expensesReducerDefaultState = [];
  */
 const expensesReducer = (state = expensesReducerDefaultState, action) => {
     switch(action.type) {
+        case 'ADD_EXPENSE':
+            // return state.concat(action.expense);
+            return [...state, action.expense];
+        case 'REMOVE_EXPENSE':
+            return state.filter( 
+                ({id}) => id !== action.id // ({id}) is destructuring of (expense)
+             );
+        case 'EDIT_EXPENSE':
+            return state.map( (expense) => {
+                if(expense.id === action.id) {
+                    return {
+                        ...expense,
+                        ...action.update
+                    };
+                }
+                else {
+                    return expense;
+                }
+            });        
         default:
+            return state;
+    }
+};
+
+/**
+ * TEXT_FILTER
+ */
+const setTextFilter = ( text = '' ) => ({
+    type: 'TEXT_FILTER',
+    text 
+});
+
+/**
+ * SORT_BY_AMOUNT
+ */
+const sortByAmount = ( ) => ({
+    type: 'SORT_BY_AMOUNT'
+});
+
+/**
+ * SORT_BY_DATE
+ */
+const sortByDate = ( ) => ({
+    type: 'SORT_BY_DATE'
+});
+
+/**
+ * SET_START_DATE
+ */
+const setStartDate = (startDate ) => ({
+    type: 'SET_START_DATE',
+    startDate
+});
+
+/**
+ * SET_END_DATE
+ */
+const setEndDate = ( endDate ) => ({
+    type: 'SET_END_DATE',
+    endDate
+});
+
+const filtersReducerDefaultState = {
+    text: '',
+    sortBy: 'date',
+    startDate: undefined,
+    endDate: undefined
+};
+
+const filtersReducer = (state = filtersReducerDefaultState, action ) => {
+    switch(action.type) {
+        case 'TEXT_FILTER':
+            return {
+                ...state,
+                text: action.text
+            };
+        case 'SORT_BY_AMOUNT':
+            return {
+                ...state,
+                sortBy: 'amount'
+            };
+        case 'SORT_BY_DATE':
+            return {
+                ...state,
+                sortBy: 'date'
+            };
+        case 'SET_START_DATE':
+            return {
+                ...state,
+                startDate: action.startDate
+            };
+        case 'SET_END_DATE':
+            return {
+                ...state,
+                endDate: action.endDate
+            };
+        default: 
             return state;
     }
 };
@@ -38,11 +167,31 @@ const expensesReducer = (state = expensesReducerDefaultState, action) => {
  */
 let store = createStore(
     combineReducers({
-        expenses: expensesReducer
+        expenses: expensesReducer,
+        filters: filtersReducer
     })
 );
 
-console.log('standard state: ' + store.getState());
+store.subscribe( () => {
+    console.log(store.getState());
+});
+
+const expenseOne = store.dispatch(addExpense({description: 'rent', amount: 500}));
+const expenseTwo = store.dispatch(addExpense({description: 'coffee', amount: 3.5}));
+
+console.log(expenseTwo);
+
+store.dispatch(removeExpense({id: expenseTwo.expense.id}));
+// store.dispatch(editExpense(expenseTwo.expense.id, { amount: 1200}));
+store.dispatch(editExpense(expenseOne.expense.id, { amount: 1600}));
+store.dispatch(setTextFilter('rent'));
+store.dispatch(setTextFilter());
+
+store.dispatch(sortByAmount());
+store.dispatch(sortByDate());
+
+store.dispatch(setStartDate('20180105'));
+store.dispatch(setEndDate('20180115'));
 
 const demoState = {
     expenses: [{
@@ -59,3 +208,25 @@ const demoState = {
         endDate: undefined
     }
 };
+
+/**
+ * *************************************************
+ * spread object/array operator
+ */
+// const user = ['maik', 'chris'];
+const user = {
+    name: 'maik',
+    age: 26
+};
+
+const info = {
+    location: 'Hamburg',
+    age: 28 // will override the age of 'user'
+};
+
+console.log(
+    { 
+        ...user,
+        ...info
+    }
+);
