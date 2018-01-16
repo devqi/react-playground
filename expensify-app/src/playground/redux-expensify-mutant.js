@@ -172,26 +172,38 @@ let store = createStore(
     })
 );
 
+const getVisibleExpense = (expenses, {text, sortBy, startDate, endDate}) => {
+    return expenses.filter( (expense) => {
+        const startDateMatch = (typeof startDate !== 'number' || expense.createdAt >= startDate);
+        const endDateMatch = (typeof endDate !== 'number' || expense.createdAt <= endDate);
+        const textMatch = expense.description.toLowerCase().includes(text.toLowerCase());
+        
+        return startDateMatch && endDateMatch && textMatch;
+    });
+};
+
 store.subscribe( () => {
-    console.log(store.getState());
+    const state = store.getState();
+    const visibleExpenses = getVisibleExpense(state.expenses, state.filters);
+    console.log(visibleExpenses);
 });
 
-const expenseOne = store.dispatch(addExpense({description: 'rent', amount: 500}));
-const expenseTwo = store.dispatch(addExpense({description: 'coffee', amount: 3.5}));
+const expenseOne = store.dispatch(addExpense({description: 'RENT', amount: 500, createdAt: 1000}));
+const expenseTwo = store.dispatch(addExpense({description: 'coffee', amount: 3.5, createdAt: -360}));
 
-console.log(expenseTwo);
+// console.log(expenseTwo);
 
-store.dispatch(removeExpense({id: expenseTwo.expense.id}));
-// store.dispatch(editExpense(expenseTwo.expense.id, { amount: 1200}));
-store.dispatch(editExpense(expenseOne.expense.id, { amount: 1600}));
+// store.dispatch(removeExpense({id: expenseTwo.expense.id}));
+// // store.dispatch(editExpense(expenseTwo.expense.id, { amount: 1200}));
+// store.dispatch(editExpense(expenseOne.expense.id, { amount: 1600}));
 store.dispatch(setTextFilter('rent'));
-store.dispatch(setTextFilter());
+// store.dispatch(setTextFilter());
 
-store.dispatch(sortByAmount());
-store.dispatch(sortByDate());
+// store.dispatch(sortByAmount());
+// store.dispatch(sortByDate());
 
-store.dispatch(setStartDate('20180105'));
-store.dispatch(setEndDate('20180115'));
+// store.dispatch(setStartDate('20180105'));
+// store.dispatch(setEndDate('20180115'));
 
 const demoState = {
     expenses: [{
