@@ -7,7 +7,7 @@ const path = require('path');
 
 // the way to expose something
 module.exports = {    
-    entry: './src/playground/redux-expensify-mutant.js',
+    entry: './src/index.js',
     output: {
         path: path.join(__dirname, 'public'),
         filename: 'bundle.js'
