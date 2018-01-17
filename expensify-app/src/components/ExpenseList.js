@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ExpenseListItem from './ExpenseListItem';
+import selectExpenses from '../selectors/expenses';
 
 /**
  * snippet#3: spread operator is applied. 
@@ -37,8 +38,7 @@ const ExpenseList = (props) => (
  */
 const mapStateToProps = (state) => {
     return {
-        expenses: state.expenses,
-        filters: state.filters
+        expenses: selectExpenses(state.expenses, state.filters) 
     };
 };
 
