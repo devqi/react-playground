@@ -10,6 +10,10 @@ const Info = (props) => (
     </div>
 );
 
+/**
+ * this is a high order component
+ * @param {passed-in Component, therefore capitalized} WrappedComponent 
+ */
 const withAdminWarning = (WrappedComponent) => {
     return (props) => (
         <div>
