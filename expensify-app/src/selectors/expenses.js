@@ -15,7 +15,15 @@ export default (expenses, {text, sortBy, startDate, endDate}) => {
         }
         else if(sortBy === 'amount') {
             // from least to most
-            return a.createdAt > b.createdAt ? 1 : -1;
+            return a.amount > b.amount ? 1 : -1;
         }
     });
 };
+
+
+/**
+ * arr.sort( compareFunction(a, b) {} )
+ * 
+ * If compareFunction(a, b) is less than 0, sort a to an index lower than b, i.e. a comes first.
+ * If compareFunction(a, b) is greater than 0, sort b to an index lower than a, i.e. b comes first.
+ */
