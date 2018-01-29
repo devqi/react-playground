@@ -6,10 +6,11 @@ import {removeExpense } from '../actions/expenses';
 /**
  * snippet#1: passed-in object destructuring
  */
-const ExpenseListItem = ( {dispatch, id, description, amount, createdAt} ) => (
+const ExpenseListItem = ( {dispatch, id, description, amount, createdAt, note } ) => (
     <div>
         <h3>{description}</h3>
         <p>{amount} - {createdAt}</p>
+        <p>{note}</p>
         <button onClick={() => {
             dispatch(removeExpense({ id }));
         }}>Remove</button>
@@ -22,8 +23,8 @@ const ExpenseListItem = ( {dispatch, id, description, amount, createdAt} ) => (
  */
 // const ExpenseListItem = (props) => (
 //     <div>
-//         <h3>{props.expense.description}</h3>
-//         <p>{props.expense.amount} - {props.expense.createdAt}</p>
+//         <h3>{props.description}</h3>
+//         <p>{props.amount} - {props.createdAt}</p>
 //         <hr />
 //     </div>
 // );

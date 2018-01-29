@@ -20,7 +20,7 @@ store.dispatch(addExpense({description: 'water bill', amount: 350}));
 store.dispatch(addExpense({description: 'gas bill', amount: 650}));
 store.dispatch(addExpense({description: 'electricity bill', amount: 550}));
 
-store.dispatch(setTextFilter('bill'));
+// store.dispatch(setTextFilter('bill'));
 
 const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
 console.log(store.getState()); 

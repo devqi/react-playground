@@ -10,7 +10,8 @@ export default class ExpenseForm extends React.Component {
         note: '',
         amount: '',
         createdAt: moment(),
-        calendarFoused: false
+        calendarFoused: false,
+        error: ''
     };
 
     onDescriptionChange = (e) => {
@@ -40,23 +41,44 @@ export default class ExpenseForm extends React.Component {
         const amount = e.target.value;
         // constrain the input for amount to be a number rounded to two decimal places
         const regex = /^\d*(\.\d{0,2})?$/;
-        if (amount.match(regex)) {
+        if (!amount || amount.match(regex)) {
             this.setState(() => ({amount}));
         }
     };
 
     onDateChange = ( createdAt ) => {
-        this.setState( () => ({createdAt}) );
+        if(createdAt) {
+            this.setState( () => ({createdAt}) );            
+        }
     };
 
     onFocusChange = ( { focused } ) => {
         this.setState( () => ({ calendarFoused: focused }));
     };
 
+    onSubmit = (e) => {
+        e.preventDefault();
+
+        if(!this.state.description || !this.state.amount) {
+            const errorMsg = 'Please provide description and amount.';
+            this.setState( () => ({ error: errorMsg}) );
+        }
+        else {
+            this.setState( () => ({ error: '' }) );
+            this.props.onSubmit( {
+                description: this.state.description,
+                amount: parseFloat(this.state.amount, 10),
+                createdAt: this.state.createdAt.valueOf(),
+                note: this.state.note
+            } );
+        }
+    };
+
     render() {
         return (
             <div>
-                <form>
+                <p>{this.state.error}</p>
+                <form onSubmit={this.onSubmit}>
                     <input
                         type="text"
                         placeholder="Description..."
