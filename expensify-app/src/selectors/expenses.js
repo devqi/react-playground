@@ -29,4 +29,7 @@ export default (expenses, {text, sortBy, startDate, endDate}) => {
  * 
  * If compareFunction(a, b) is less than 0, sort a to an index lower than b, i.e. a comes first.
  * If compareFunction(a, b) is greater than 0, sort b to an index lower than a, i.e. b comes first.
+ * 
+ * 
+ * The functions isSameOrBefore() and isSameOrAfter are from the external library 'moment'.
  */
