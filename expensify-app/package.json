@@ -32,12 +32,13 @@
     "webpack-dev-server": "^2.9.7"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server/server.js",
     "build:dev": "webpack",
     "build:prod": "webpack -p --env production",
     "test": "jest",
     "eject": "react-scripts eject",
     "dev-server": "webpack-dev-server",
-    "serve": "live-server public/"
+    "serve": "live-server public/",
+    "heroku-postbuild": "yarn run build:prod"
   }
 }
