@@ -22,6 +22,12 @@ firebase
             city: 'Hamburg',
             country: 'Germany'
         }
+    }).then(
+        (data) => {
+            console.log('this is a success handler');
+        }, 
+        (error) => {
+            console.log('this is a failure handler');            
     });
 
 firebase
@@ -49,6 +55,16 @@ ref.once('value')
         const key = snapshot.key;
         const value = snapshot.val();
         console.log(key + ' = ' + value);
-
     });
-// console.log('age of PandaZ: ' + ref);
+
+database.ref('attributes').set({
+    height: 180,
+    weight: 100
+}).then(
+    (data) => {
+        console.log('atrributes updated');
+    },
+    (error) => {
+        console.log('atrributes failed updating');        
+    }
+);
