@@ -27,7 +27,7 @@ firebase
             console.log('this is a success handler');
         }, 
         (error) => {
-            console.log('this is a failure handler');            
+            console.log('this is a failure handler', error);            
     });
 
 firebase
@@ -65,6 +65,30 @@ database.ref('attributes').set({
         console.log('atrributes updated');
     },
     (error) => {
-        console.log('atrributes failed updating');        
+        console.log('atrributes failed updating', error);        
     }
 );
+
+/**
+ * remove a property
+ * 
+ * refIsSingle.set(null) is equivalent to refIsSingle.remove()
+ */
+// const refIsSingle = database.ref();
+// refIsSingle.remove().then(
+//     () => {
+//         console.log('remove succeeded.');
+//     },
+//     (error) => {
+//         console.log('remove failed.', error);
+//     }
+// );
+
+/**
+ * update some content in database
+ */
+database.ref().update({
+    name: 'Catfish',
+    isSingle: null,
+    'location/city': 'Munich'
+});
