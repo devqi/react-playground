@@ -7,23 +7,48 @@ const config = {
     projectId: "expensify-98a02",
     storageBucket: "expensify-98a02.appspot.com",
     messagingSenderId: "321141692729"
-  };
+};
 
-  firebase.initializeApp(config);
+firebase.initializeApp(config);
 
-  firebase.database().ref().set({
-      name: 'pandaZ',
-      age: 29,
-      isSingle: false,
-      location: {
-          city: 'Hamburg',
-          country: 'Germany'
-      }
-  });
+firebase
+    .database()
+    .ref()
+    .set({
+        name: 'pandaZ',
+        age: 29,
+        isSingle: false,
+        location: {
+            city: 'Hamburg',
+            country: 'Germany'
+        }
+    });
 
-  firebase.database().ref('age').set(31);
-  firebase.database().ref('location/city').set('Frankfurt am Main');
+firebase
+    .database()
+    .ref('age')
+    .set(31);
+firebase
+    .database()
+    .ref('location/city')
+    .set('Frankfurt am Main');
 
-  firebase.database().ref('attributes/height').set(165);
-  firebase.database().ref('attributes/weight').set(45);
+firebase
+    .database()
+    .ref('attributes/height')
+    .set(165);
+firebase
+    .database()
+    .ref('attributes/weight')
+    .set(45);
 
+const database = firebase.database();
+const ref = database.ref('age');
+ref.once('value')
+    .then(function (snapshot) {
+        const key = snapshot.key;
+        const value = snapshot.val();
+        console.log(key + ' = ' + value);
+
+    });
+// console.log('age of PandaZ: ' + ref);
