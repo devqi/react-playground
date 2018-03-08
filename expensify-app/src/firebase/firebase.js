@@ -11,28 +11,67 @@ const config = {
 
 firebase.initializeApp(config);
 
-firebase
-    .database()
-    .ref()
-    .set({
-        name: 'pandaZ',
-        age: 29,
-        isSingle: false,
-        location: {
-            city: 'Hamburg',
-            country: 'Germany'
-        },
-        job: {
-            title: 'Software Developer',
-            company: 'Amazon'
-        }
-    }).then(
-        (data) => {
-            console.log('this is a success handler');
-        }, 
-        (error) => {
-            console.log('this is a failure handler', error);            
+const database = firebase.database();
+
+// database.ref('expenses').push({
+//     description: 'water bill',
+//     amount: 100,
+//     createdAt: 200,
+//     note: 'water bill for 2017'
+// });
+
+// database.ref('expenses').push({
+//     description: 'electricity bill',
+//     amount: 120,
+//     createdAt: 200,
+//     note: 'electricity bill for 2017'
+// });
+
+// database.ref('expenses').push({
+//     description: 'food',
+//     amount: 300,
+//     createdAt: 200,
+//     note: 'costs of food in 2017'
+// });
+
+const ref = database.ref('expenses');
+ref.once('value').then((snapshot) => {
+    const expenses = [];
+console.log('snapshot.key = ', snapshot.key);
+    snapshot.forEach((childSnapshot) => {
+        console.log('child-snapshot.key = ', snapshot.key);
+        
+        expenses.push({
+            id: childSnapshot.key,
+            ...childSnapshot.val()
+        });
     });
+
+    console.log('expenses: ', expenses);
+});
+
+// firebase
+//     .database()
+//     .ref()
+//     .set({
+//         name: 'pandaZ',
+//         age: 29,
+//         isSingle: false,
+//         location: {
+//             city: 'Hamburg',
+//             country: 'Germany'
+//         },
+//         job: {
+//             title: 'Software Developer',
+//             company: 'Amazon'
+//         }
+//     }).then(
+//         (data) => {
+//             console.log('this is a success handler');
+//         }, 
+//         (error) => {
+//             console.log('this is a failure handler', error);            
+//     });
 
 // firebase
 //     .database()
@@ -52,18 +91,18 @@ firebase
 //     .ref('attributes/weight')
 //     .set(45);
 
-const database = firebase.database();
+
 /**
  * fetch data from database
  */
-const ref = database.ref();
+// const ref = database.ref();
 // ref.once('value')
 //     .then(function (snapshot) {
 //         const key = snapshot.key;
 //         const value = snapshot.val();
 //         console.log(key + ' = ' + value);
 //     });
-const onValueChange = (snapshot) =>{
+// const onValueChange = (snapshot) =>{
     // const key = snapshot.key;
     // const value = snapshot.val();
     // console.log(key + ' : ' + value);
@@ -77,30 +116,30 @@ const onValueChange = (snapshot) =>{
     /**
      * Syntax 2
      */
-    const value = snapshot.val();
-    console.log(`${value.name} is a ${value.job.title} at ${value.job.company}.`)
-};
+//     const value = snapshot.val();
+//     console.log(`${value.name} is a ${value.job.title} at ${value.job.company}.`)
+// };
 
-ref.on('value', onValueChange);
+// ref.on('value', onValueChange);
 
-setTimeout(() => {
-    ref.update({
-        name: 'Batman',
-        'job/title': 'Lead Consultant',
-        'job/company': 'Google'
-    });
-}, 3500);
+// setTimeout(() => {
+//     ref.update({
+//         name: 'Batman',
+//         'job/title': 'Lead Consultant',
+//         'job/company': 'Google'
+//     });
+// }, 3500);
 
-setTimeout(() => {
-    ref.off();
-}, 7000);
+// setTimeout(() => {
+//     ref.off();
+// }, 7000);
 
-setTimeout(() => {
-    ref.update({
-        name: 'Lee',
-        'job/title': 'Senior Consultant'
-    });
-}, 10500);
+// setTimeout(() => {
+//     ref.update({
+//         name: 'Lee',
+//         'job/title': 'Senior Consultant'
+//     });
+// }, 10500);
 
 
 ///////////////////////////////////////////
