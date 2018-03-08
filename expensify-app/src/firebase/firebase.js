@@ -21,6 +21,10 @@ firebase
         location: {
             city: 'Hamburg',
             country: 'Germany'
+        },
+        job: {
+            title: 'Software Developer',
+            company: 'Amazon'
         }
     }).then(
         (data) => {
@@ -30,44 +34,87 @@ firebase
             console.log('this is a failure handler', error);            
     });
 
-firebase
-    .database()
-    .ref('age')
-    .set(31);
-firebase
-    .database()
-    .ref('location/city')
-    .set('Frankfurt am Main');
+// firebase
+//     .database()
+//     .ref('age')
+//     .set(31);
+// firebase
+//     .database()
+//     .ref('location/city')
+//     .set('Frankfurt am Main');
 
-firebase
-    .database()
-    .ref('attributes/height')
-    .set(165);
-firebase
-    .database()
-    .ref('attributes/weight')
-    .set(45);
+// firebase
+//     .database()
+//     .ref('attributes/height')
+//     .set(165);
+// firebase
+//     .database()
+//     .ref('attributes/weight')
+//     .set(45);
 
 const database = firebase.database();
-const ref = database.ref('age');
-ref.once('value')
-    .then(function (snapshot) {
-        const key = snapshot.key;
-        const value = snapshot.val();
-        console.log(key + ' = ' + value);
-    });
+/**
+ * fetch data from database
+ */
+const ref = database.ref();
+// ref.once('value')
+//     .then(function (snapshot) {
+//         const key = snapshot.key;
+//         const value = snapshot.val();
+//         console.log(key + ' = ' + value);
+//     });
+const onValueChange = (snapshot) =>{
+    // const key = snapshot.key;
+    // const value = snapshot.val();
+    // console.log(key + ' : ' + value);
 
-database.ref('attributes').set({
-    height: 180,
-    weight: 100
-}).then(
-    (data) => {
-        console.log('atrributes updated');
-    },
-    (error) => {
-        console.log('atrributes failed updating', error);        
-    }
-);
+    /**
+     * Syntax 1
+     */
+    // const name = snapshot.child('name').val();
+    // const jobTitle = snapshot.child('job/title').val();
+    // console.log(name, 'is a ', jobTitle);
+    /**
+     * Syntax 2
+     */
+    const value = snapshot.val();
+    console.log(`${value.name} is a ${value.job.title} at ${value.job.company}.`)
+};
+
+ref.on('value', onValueChange);
+
+setTimeout(() => {
+    ref.update({
+        name: 'Batman',
+        'job/title': 'Lead Consultant',
+        'job/company': 'Google'
+    });
+}, 3500);
+
+setTimeout(() => {
+    ref.off();
+}, 7000);
+
+setTimeout(() => {
+    ref.update({
+        name: 'Lee',
+        'job/title': 'Senior Consultant'
+    });
+}, 10500);
+
+
+///////////////////////////////////////////
+// database.ref('attributes').set({
+//     height: 180,
+//     weight: 100
+// }).then(
+//     (data) => {
+//         console.log('atrributes updated');
+//     },
+//     (error) => {
+//         console.log('atrributes failed updating', error);        
+//     }
+// );
 
 /**
  * remove a property
@@ -87,8 +134,8 @@ database.ref('attributes').set({
 /**
  * update some content in database
  */
-database.ref().update({
-    name: 'Catfish',
-    isSingle: null,
-    'location/city': 'Munich'
-});
+// database.ref().update({
+//     name: 'Catfish',
+//     isSingle: null,
+//     'location/city': 'Munich'
+// });
