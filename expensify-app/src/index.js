@@ -47,3 +47,7 @@ ReactDOM.render(
     jsx, 
     document.getElementById('root')
 );
+ReactDOM.render(
+    <p>another dom</p>,
+    document.getElementById('root2')
+);
