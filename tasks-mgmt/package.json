@@ -1,0 +1,11 @@
+{
+  "name": "pure-react-template-v1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "qzh",
+  "license": "MIT",
+  "dependencies": {
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1"
+  }
+}
